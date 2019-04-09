@@ -1,3 +1,4 @@
+#by M Shahidi
 from imutils.video import VideoStream
 from imutils.video import FPS
 from geometry_msgs.msg import PoseStamped,Twist
@@ -49,7 +50,7 @@ class ThatHelipad():
         self.known_distance = 145
         self.known_width = 100
         self.focalLength = 477
-        self.meskicenter = (0,0)
+        self.blackcenter = (0,0)
         self.cxx = 0
         self.cyy = 0
         self.distance = 0
@@ -159,10 +160,10 @@ class ThatHelipad():
                         rectu = cv2.boundingRect(cmt)
                         if rectu[2] < 100 or rectu[3] < 100: continue
                         ((cxx, cyy), ra) = cv2.minEnclosingCircle(cmt)                       
-                        self.meskicenter = (int(cxx), int(cyy))                        
-                        meski=cv2.pointPolygonTest(c, self.meskicenter, True)
+                        self.blackcenter = (int(cxx), int(cyy))                        
+                        black=cv2.pointPolygonTest(c, self.blackcenter, True)
                      
-                        if meski > 0:
+                        if black > 0:
                                                   
                             marker = cv2.minAreaRect(c)
                             # focalLength = (marker[1][0] * self.known_distance) / self.known_width
@@ -176,7 +177,7 @@ class ThatHelipad():
                             self.fly_control_cmd.linear.x = 0.02
 	                    self.fly_control_cmd.linear.y = min(max(-0.01, self.roll_vel), 0.01)
                             self.fly_control_pub.publish(self.fly_control_cmd)
-                         #   print('mashaallah')
+                         #   print('Hooray!')
                             if self.distance < 142:
                                 self.target_found = True
                                 self.camera_control()
@@ -203,7 +204,7 @@ class ThatHelipad():
 
 def main():
     
-    rospy.init_node('cooolchild', anonymous=True)   
+    rospy.init_node('Mahsas-Bebop', anonymous=True)   
     od = ThatHelipad()
 
     try:       
