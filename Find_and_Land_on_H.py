@@ -1,4 +1,4 @@
-#by M Shahidi
+#by Mahsa Shahidi
 from imutils.video import VideoStream
 from imutils.video import FPS
 from geometry_msgs.msg import PoseStamped,Twist
@@ -34,12 +34,12 @@ class ThatHelipad():
 
         self.fly_control_cmd = Twist()
         self.camera_control_cmd = Twist()
-        self.takeoff_cmd = Empty()                      # Takeoff
-        self.land_cmd = Empty()                         # Land
-        self.pitch_vel = 0                 # linear.x backward(-1) to forward(+1) 
-        self.roll_vel = 0                  # linear.y right(-1) to left(+1)
-        self.vertical_vel = 0              # linear.z descend(-1) to ascend(+1)
-        self.rotate_vel = 0                # angular.z clockwise(-1) to anti-clockwise(+1)
+        self.takeoff_cmd = Empty()                      
+        self.land_cmd = Empty()                         
+        self.pitch_vel = 0                 # linear.x  
+        self.roll_vel = 0                  # linear.y 
+        self.vertical_vel = 0              # linear.z 
+        self.rotate_vel = 0                # angular.z 
         self.pid_Pitch = PID(0.04, 0.0000015, 0.0000001, -0.01, 0.01, -0.1, 0.1)
         self.pid_Roll = PID(0.03, 0.0000015, 0.0000001, -0.01, 0.01, -0.1, 0.1)
         self.pid_Vertical = PID(0.95, 0.00, 0.0, -0.01, 0.01, -0.1, 0.1)
